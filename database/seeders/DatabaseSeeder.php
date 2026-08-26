@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Anime;
+use App\Models\NewsItem;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,6 +35,12 @@ class DatabaseSeeder extends Seeder
             'description' => 'Een elf-magiër reist verder na het einde van haar grote avontuur.',
             'episodes' => 28,
             'release_year' => 2023,
+        ]);
+
+        NewsItem::create([
+            'title' => 'Welkom bij AniTrack',
+            'content' => 'Je kunt vanaf nu je eigen anime watchlist bijhouden.',
+            'published_at' => now(),
         ]);
 
     }

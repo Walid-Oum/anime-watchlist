@@ -5,6 +5,7 @@ use App\Http\Controllers\AnimeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\WatchlistController;
+use App\Http\Controllers\NewsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,5 +51,12 @@ Route::middleware(['auth', 'admin'])
         Route::resource('users', AdminUserController::class)
             ->except(['show', 'destroy']);
     });
+
+
+Route::get('/news', [NewsController::class, 'index'])
+    ->name('news.index');
+
+Route::get('/news/{newsItem}', [NewsController::class, 'show'])
+    ->name('news.show');
 
 require __DIR__.'/auth.php';
