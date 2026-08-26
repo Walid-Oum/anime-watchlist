@@ -1,71 +1,64 @@
-<h1>Nieuwe gebruiker</h1>
+<x-layouts.admin>
+    <x-slot name="title">
+        Nieuwe gebruiker
+    </x-slot>
 
-@if($errors->any())
-    <ul>
-        @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-@endif
+    <div class="max-w-2xl">
+        <h1 class="text-3xl font-semibold text-gray-900 mb-8">
+            Nieuwe gebruiker
+        </h1>
 
-<form method="POST" action="{{ route('admin.users.store') }}">
-    @csrf
-
-    <div>
-        <label for="name">Naam</label>
-        <input
-            type="text"
-            id="name"
-            name="name"
-            value="{{ old('name') }}"
-            required
+        <form
+            method="POST"
+            action="{{ route('admin.users.store') }}"
+            class="bg-white border border-gray-200 p-6"
         >
-    </div>
+            @csrf
 
-    <div>
-        <label for="username">Username</label>
-        <input
-            type="text"
-            id="username"
-            name="username"
-            value="{{ old('username') }}"
-        >
-    </div>
+            <x-form-input
+                name="name"
+                label="Naam"
+                required
+            />
 
-    <div>
-        <label for="email">E-mail</label>
-        <input
-            type="email"
-            id="email"
-            name="email"
-            value="{{ old('email') }}"
-            required
-        >
-    </div>
+            <x-form-input
+                name="username"
+                label="Username"
+            />
 
-    <div>
-        <label for="password">Wachtwoord</label>
-        <input
-            type="password"
-            id="password"
-            name="password"
-            minlength="8"
-            required
-        >
-    </div>
+            <x-form-input
+                name="email"
+                label="E-mail"
+                type="email"
+                required
+            />
 
-    <div>
-        <label>
-            <input
-                type="checkbox"
-                name="is_admin"
-                value="1"
+            <x-form-input
+                name="password"
+                label="Wachtwoord"
+                type="password"
+                required
+                minlength="8"
+            />
+
+            <div class="mb-6">
+                <label class="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        name="is_admin"
+                        value="1"
+                    >
+
+                    <span>Admin</span>
+                </label>
+            </div>
+
+            <button
+                type="submit"
+                class="bg-teal-700 hover:bg-teal-800 text-white px-5 py-2 font-medium"
             >
-            Admin
-        </label>
+                Gebruiker aanmaken
+            </button>
+        </form>
     </div>
-
-    <button type="submit">
-        Gebruiker aanmaken
-    </button>
-</form>
+</x-layouts.admin>
