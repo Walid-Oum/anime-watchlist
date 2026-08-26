@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\AnimeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 
@@ -14,6 +15,13 @@ Route::get('/dashboard', function () {
 
 Route::get('/profile/{user}', [App\Http\Controllers\Userzone\ProfileController::class, 'show'])
     ->name('profile.show');
+
+
+Route::get('/animes', [AnimeController::class, 'index'])
+    ->name('animes.index');
+
+Route::get('/animes/{anime}', [AnimeController::class, 'show'])
+    ->name('animes.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [App\Http\Controllers\Userzone\ProfileController::class, 'edit'])->name('profile.edit');
