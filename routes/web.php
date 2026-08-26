@@ -9,6 +9,8 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\NewsItemController as AdminNewsItemController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Admin\FaqCategoryController as AdminFaqCategoryController;
+use App\Http\Controllers\Admin\FaqController as AdminFaqController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,6 +59,8 @@ Route::middleware(['auth', 'admin'])
             ->except(['show']);
         Route::resource('faq-categories', AdminFaqCategoryController::class)
             ->except(['show']);
+        Route::resource('faqs', AdminFaqController::class)
+            ->except(['show']);
     });
 
 
@@ -68,5 +72,11 @@ Route::get('/news/{newsItem}', [NewsController::class, 'show'])
 
 Route::get('/faq', [FaqController::class, 'index'])
     ->name('faq.index');
+
+Route::get('/contact', [ContactController::class, 'create'])
+    ->name('contact.create');
+
+Route::post('/contact', [ContactController::class, 'store'])
+    ->name('contact.store');
 
 require __DIR__.'/auth.php';
