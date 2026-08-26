@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AnimeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\WatchlistController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +28,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [App\Http\Controllers\Userzone\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [App\Http\Controllers\Userzone\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [App\Http\Controllers\Userzone\ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/watchlist', [WatchlistController::class, 'index'])
+        ->name('watchlist.index');
+
+    Route::post('/watchlist/{anime}', [WatchlistController::class, 'store'])
+        ->name('watchlist.store');
+
+    Route::delete('/watchlist/{anime}', [WatchlistController::class, 'destroy'])
+        ->name('watchlist.destroy');
 });
 
 Route::middleware(['auth', 'admin'])

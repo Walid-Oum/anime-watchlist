@@ -19,3 +19,13 @@
 @if($anime->description)
     <p>{{ $anime->description }}</p>
 @endif
+
+@auth
+    <form method="POST" action="{{ route('watchlist.store', $anime) }}">
+        @csrf
+
+        <button type="submit">
+            Voeg toe aan watchlist
+        </button>
+    </form>
+@endauth
