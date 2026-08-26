@@ -8,6 +8,7 @@ use App\Http\Controllers\WatchlistController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\NewsItemController as AdminNewsItemController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\Admin\FaqCategoryController as AdminFaqCategoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,6 +54,8 @@ Route::middleware(['auth', 'admin'])
         Route::resource('users', AdminUserController::class)
             ->except(['show', 'destroy']);
         Route::resource('news', AdminNewsItemController::class)
+            ->except(['show']);
+        Route::resource('faq-categories', AdminFaqCategoryController::class)
             ->except(['show']);
     });
 
