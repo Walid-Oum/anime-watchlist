@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\WatchlistController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\NewsItemController as AdminNewsItemController;
+use App\Http\Controllers\FaqController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,5 +62,8 @@ Route::get('/news', [NewsController::class, 'index'])
 
 Route::get('/news/{newsItem}', [NewsController::class, 'show'])
     ->name('news.show');
+
+Route::get('/faq', [FaqController::class, 'index'])
+    ->name('faq.index');
 
 require __DIR__.'/auth.php';

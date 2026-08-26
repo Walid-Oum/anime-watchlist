@@ -8,6 +8,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Anime;
 use App\Models\NewsItem;
+use App\Models\FaqCategory;
+use App\Models\Faq;
 
 class DatabaseSeeder extends Seeder
 {
@@ -41,6 +43,16 @@ class DatabaseSeeder extends Seeder
             'title' => 'Welkom bij AniTrack',
             'content' => 'Je kunt vanaf nu je eigen anime watchlist bijhouden.',
             'published_at' => now(),
+        ]);
+
+        $category = FaqCategory::create([
+            'name' => 'Watchlist',
+        ]);
+
+        Faq::create([
+            'faq_category_id' => $category->id,
+            'question' => 'Hoe voeg ik een anime toe aan mijn watchlist?',
+            'answer' => 'Open een anime en klik op de knop om hem aan je watchlist toe te voegen.',
         ]);
 
     }
