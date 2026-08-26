@@ -13,7 +13,10 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post"
+          action="{{ route('profile.update') }}"
+          enctype="multipart/form-data"
+          class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
@@ -21,6 +24,57 @@
             <x-breeze.input-label for="name" :value="__('Name')" />
             <x-breeze.text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-breeze.input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        <div>
+            <x-breeze.input-label for="username" :value="__('Username')" />
+            <x-breeze.text-input
+                id="username"
+                name="username"
+                type="text"
+                class="mt-1 block w-full"
+                :value="old('username', $user->username)"
+            />
+            <x-breeze.input-error class="mt-2" :messages="$errors->get('username')" />
+        </div>
+
+        <div>
+            <x-breeze.input-label for="birthday" :value="__('Birthday')" />
+            <x-breeze.text-input
+                id="birthday"
+                name="birthday"
+                type="date"
+                class="mt-1 block w-full"
+                :value="old('birthday', optional($user->birthday)->format('Y-m-d'))"
+            />
+            <x-breeze.input-error class="mt-2" :messages="$errors->get('birthday')" />
+        </div>
+
+        <div>
+            <x-breeze.input-label for="about" :value="__('About me')" />
+
+            <textarea
+                id="about"
+                name="about"
+                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                rows="4"
+            >{{ old('about', $user->about) }}</textarea>
+
+            <x-breeze.input-error class="mt-2" :messages="$errors->get('about')" />
+        </div>
+
+        <div>
+            <x-breeze.input-label for="profile_photo" :value="__('Profile photo')" />
+
+            <input
+                id="profile_photo"
+                name="profile_photo"
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                class="mt-1 block w-full"
+            >
+
+            <x-breeze.input-error class="mt-2" :messages="$errors->get('profile_photo')" />
         </div>
 
         <div>
