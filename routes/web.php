@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\WatchlistController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\Admin\NewsItemController as AdminNewsItemController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,6 +51,8 @@ Route::middleware(['auth', 'admin'])
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
         Route::resource('users', AdminUserController::class)
             ->except(['show', 'destroy']);
+        Route::resource('news', AdminNewsItemController::class)
+            ->except(['show']);
     });
 
 
