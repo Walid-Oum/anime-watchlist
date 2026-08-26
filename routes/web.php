@@ -37,6 +37,9 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/watchlist/{anime}', [WatchlistController::class, 'destroy'])
         ->name('watchlist.destroy');
+
+    Route::patch('/watchlist/{anime}', [WatchlistController::class, 'update'])
+        ->name('watchlist.update');
 });
 
 Route::middleware(['auth', 'admin'])

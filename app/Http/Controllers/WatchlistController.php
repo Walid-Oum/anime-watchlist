@@ -41,4 +41,21 @@ class WatchlistController extends Controller
             ->route('watchlist.index')
             ->with('success', 'Anime verwijderd uit je watchlist.');
     }
+
+
+    public function update(Request $request, Anime $anime)
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:plan_to_watch,watching,completed,dropped',
+            'rating' => 'nullable|integer|min:1|max:10',
+            'episodes_watched' => 'required|integer|min:0',
+        ]);
+
+
+        $request->user()->animes()->updateExistingPivot($anime->id, $validated);
+
+        return redirect()
+            ->route('watchlist.index')
+            ->with('success', 'Watchlist bijgewerkt.');
+    }
 }
