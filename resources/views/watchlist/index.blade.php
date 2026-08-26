@@ -24,19 +24,23 @@
                     name="status"
                     required
                 >
-                    <option value="plan_to_watch" @selected($anime->pivot->status === 'plan_to_watch')}>
+                    <option value="plan_to_watch"
+                        {{ $anime->pivot->status === 'plan_to_watch' ? 'selected' : '' }}>
                         Plan to watch
                     </option>
 
-                    <option value="watching" @selected($anime->pivot->status === 'watching')}>
+                    <option value="watching"
+                        {{ $anime->pivot->status === 'watching' ? 'selected' : '' }}>
                         Watching
                     </option>
 
-                    <option value="completed" @selected($anime->pivot->status === 'completed')}>
+                    <option value="completed"
+                        {{ $anime->pivot->status === 'completed' ? 'selected' : '' }}>
                         Completed
                     </option>
 
-                    <option value="dropped" @selected($anime->pivot->status === 'dropped')}>
+                    <option value="dropped"
+                        {{ $anime->pivot->status === 'dropped' ? 'selected' : '' }}>
                         Dropped
                     </option>
                 </select>
